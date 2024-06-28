@@ -28,16 +28,18 @@ docker-compose up --build -d
   {
     "total_pages": 5,
     "page": 1,
-    "memes": {
-        "12312321123.png": {
-            "text": "Funny mem 1 LOL",
-            "image_base64": "fjIBORw0KGgoAdAANSUg..."
+    "memes": [{
+          "id": 1,
+          "mem_path": "1132412.2134.jpeg",
+          "text": "Text mem"
         },
-        "21498124742.jpeg": {
-            "text": "FunnyL0OL",
-            "image_base64": "iVBORwGgoAAAANSUhEUg..."
+        {
+          "id": 2,
+          "mem_path": "1241243.4212.png",
+          "text": "Mems funny"
         },
         ...
+      ] 
     }
   ```
 }
