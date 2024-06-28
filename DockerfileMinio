@@ -1,0 +1,14 @@
+FROM alpine:3.20.1
+
+RUN apk --no-cache add curl
+
+RUN curl -fsSL https://dl.min.io/server/minio/release/linux-amd64/minio -o /usr/bin/minio && \
+    chmod +x /usr/bin/minio
+
+RUN mkdir -p /s3-data
+
+WORKDIR /s3-data
+
+EXPOSE 9000
+
+CMD ["minio", "server", "/s3-data"]

@@ -1,0 +1,59 @@
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    depends_on:
+      - fastapi
+    ports:
+      - 2424:80
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    networks:
+      - custom
+
+  fastapi:
+    container_name: fastapi
+    build:
+      context: .
+      dockerfile: DockerfileFastapi
+    restart: always
+    env_file:
+      - path: ./env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - minio
+    volumes:
+      - ./project_mem:/project_mem
+    networks:
+      - custom
+
+  db_postgres:
+    container_name: db_postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - path: ./env
+    image: postgres:14.12-alpine3.20
+    networks:
+      - custom
+
+  minio:
+    container_name: minio
+    depends_on:
+      - db_postgres
+    build:
+      context: .
+      dockerfile: DockerfileMinio
+    ports:
+      - "9000:9000"
+    env_file:
+      - path: ./env
+    volumes:
+      - ./s3-data:/s3-data
+    networks:
+      - custom
+
+networks:
+  custom:
+    driver: bridge

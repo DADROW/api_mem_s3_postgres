@@ -1,0 +1,9 @@
+MINIO_ACCESS_KEY = 'GleB1CdCaWbmP2CbX7l4'
+MINIO_SECRET_KEY = 'tbZAVcijdUo5BdmWpk0g6mSslVN6R4bH7Kt5nu0S'
+MINIO_BUCKET_NAME = 's3-storage'
+MINIO_URL = 'minio:9000'
+
+POSTGRES_PASSWORD = 'root'
+POSTGRES_USER = 'admin'
+POSTGRES_DB = 'database'
+DATABASE_URL = 'postgresql+psycopg2://admin:root@db_postgres:5432/database'
